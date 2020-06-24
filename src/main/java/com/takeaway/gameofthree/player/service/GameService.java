@@ -60,7 +60,7 @@ public class GameService implements IGameService{
 	 * @return
 	 */
 	@Transactional
-	public Game start(int input) {
+	public Game start(Integer input) {
 		
 		//Check if 2nd Player is ready to play.
 		if(!opponentClient.isOpponentReady()) {
@@ -82,8 +82,7 @@ public class GameService implements IGameService{
 		move.setGame(savedGame);
 		GameMove savedMove = gameMoveRepo.save(move);
 		
-		log.info("Sending Event for {} Game: {} with Move:{}", typeOfInput, savedGame.getGameId(), savedMove.getMoveId());
-		eventServiceClient.createMoveEvent(savedGame.getGameId(), savedMove.getMoveId(), playerName);
+		sendEvent(savedMove);
 		return savedGame;
 	}
 	
@@ -107,8 +106,13 @@ public class GameService implements IGameService{
 		nextMove.setGame(pastMove.getGame());
 		final GameMove nextMoveSaved = gameMoveRepo.save(nextMove);
 		log.info("{} is making next Move: [ addend= {}, result= {}] with input: {}", playerName, nextMoveSaved.getResult(), nextMoveSaved.getAddend(), input);
-		log.info("Sending Event for {} Game: {} with MoveId:{}", typeOfInput,  nextMoveSaved.getGame().getGameId(), nextMoveSaved.getMoveId());
-		eventServiceClient.createMoveEvent(nextMoveSaved.getGame().getGameId(), nextMoveSaved.getMoveId(), playerName);
+		sendEvent(nextMoveSaved);
+	}
+	
+	private void sendEvent(GameMove move) {
+		log.info("Sending Event for {} Game: {} with MoveId:{}", typeOfInput,  move.getGame().getGameId(), move.getMoveId());
+		eventServiceClient.createMoveEvent(move.getGame().getGameId(), move.getMoveId(), playerName);
+
 	}
 	
 	/**
