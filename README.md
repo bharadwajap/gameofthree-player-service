@@ -5,7 +5,7 @@ Reference Documentation for 'Game of Three' REST API game
 
 ![Diagram](gameofthree.jpg)
 
-Communication between two players is enabled via events, this is achieved by having an Event Service which acts as common event producer for both the player applications. The players call event service to publish events to opponent's queue. The players themselves being REST API's and event consumers.
+Communication between two players is enabled via events, this is achieved by having an Event Service REST API which acts as common event producer for both the player applications. The players call event service to publish events to opponent's queue. The players themselves being REST API's and event consumers.
 
 For each move made by the player1, an event is generated and sent to opponent's queue which is read by opponent and reverts back with the move in form of event which is again read by player1.
 
@@ -22,7 +22,9 @@ Manual/Automatic input configuration has been made in the configuration files.
 - H2 Database
 
 
-PS: A local installtion of Rabbit MQ server is required for this service to run (To consume the messages and for the event service to publish). Messaging queue names has been mentioned in the configuration files.
+### Prerequisites
+- A local installation of Rabbit MQ server is required for this service to run (To consume the messages and for the event service to publish). Messaging queue names has been mentioned in the configuration files.
+- [Event service REST API](https://github.com/bharadwajap/gameofthree-event-service) should be run before starting the players.
 
 ### How to Build and Run
 Project is build using Maven.
