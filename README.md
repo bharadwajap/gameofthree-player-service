@@ -1,7 +1,7 @@
 # Getting Started
 Reference Documentation for 'Game of Three' REST API game
 
-###Architechture and Technologies
+### Architechture and Technologies
 
 ![Diagram](gameofthree.jpg)
 
@@ -24,7 +24,7 @@ Manual/Automatic input configuration has been made in the configuration files.
 
 PS: A local installtion of Rabbit MQ server is required for this service to run (To consume the messages and for the event service to publish). Messaging queue names has been mentioned in the configuration files.
 
-###How to Build and Run
+### How to Build and Run
 Project is build using Maven.
 
 Run below commands to bring both the players up and running. Based on the configuration files, both players run on different
@@ -34,7 +34,7 @@ ports with different application names.
 
 `java -Dspring.profiles.active=player2 -jar gameofthree-player-service-0.0.1-SNAPSHOT.jar`
 
-###Documentation
+### Documentation
 Swagger has been configured with the service and API documentation can be viewed at below endpoint after starting the application.
 
 `http://localhost:8091/gameofthree/swagger-ui.html#/`

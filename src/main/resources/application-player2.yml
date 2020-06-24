@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: gameofthree-player2-app
+server:
+  port: 8092
+
+config:
+  player:
+    typeOfInput:  automatic
+    name: player2
+    opponent:
+      name: player1    
+      endpoint: http://localhost:8091/gameofthree/actuator/health    
+  events:
+    createEndpoint: http://localhost:8080/gameofthree/events/{gameId}/move/{moveId}?player={player}
+    rabbitmq:
+      queue: gameofthree-player2-queue
