@@ -1,0 +1,26 @@
+server:
+  servlet:
+    context-path: /gameofthree
+spring:
+  datasource:
+    driverClassName: org.h2.Driver
+    username: sa
+    password: password
+    url: jdbc:h2:tcp://localhost/D:/Work/Java_Assignments/Takeaway/gameofthree-h2-db/gameofthree-db;DB_CLOSE_ON_EXIT=TRUE;FILE_LOCK=NO
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: none
+      naming: 
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl      
+  h2: 
+    console:
+      enabled: true
+      path: /h2-console
+      settings:
+        web-allow-others: true
+  rabbitmq:
+    host: 52.43.241.90
+    port: 5672
+    username: guest
+    password: guest
