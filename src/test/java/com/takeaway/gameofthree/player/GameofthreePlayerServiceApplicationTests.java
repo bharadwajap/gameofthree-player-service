@@ -1,4 +1,4 @@
-package com.takeaway.gameofthree.player1;
+package com.takeaway.gameofthree.player;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

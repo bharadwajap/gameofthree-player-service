@@ -31,9 +31,17 @@ import io.swagger.annotations.ApiResponses;
 @RequestMapping(value = "/game")
 public class GameController {
 
-	@Autowired
 	private GameService gameService;
 
+	public GameController(){
+		
+	}
+	
+	@Autowired
+	public GameController(GameService gameService){
+		this.gameService = gameService;
+	}
+	
 	/**
 	 * Starts the game with random or user input based on the configuration
 	 * @param input Number to start the game
@@ -53,7 +61,7 @@ public class GameController {
             @ApiResponse(code = 503, message = "Opponent player is not available", response = ProblemDetail.class),
             @ApiResponse(code = 500, message = "Unexpected Internal Error", response = ProblemDetail.class)})
 	@PostMapping(value = "/start", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Game> startTheGame(@RequestParam(name = "input", required = false) int input) {
+	public ResponseEntity<Game> startTheGame(@RequestParam(name = "input", required = false) Integer input) {
 
 		return ResponseEntity.ok(gameService.start(input));
 	}

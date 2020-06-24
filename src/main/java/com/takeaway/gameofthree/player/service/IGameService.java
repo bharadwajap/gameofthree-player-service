@@ -5,7 +5,7 @@ import com.takeaway.gameofthree.player.model.GameMoveEvent;
 
 public interface IGameService {
 
-	Game start(int input);
+	Game start(Integer input);
 	void play(GameMoveEvent moveEvent);
 	Game getGameById(int gameId);
 }
